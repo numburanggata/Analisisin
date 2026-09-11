@@ -2,13 +2,38 @@
 
 **Sanitasi artefak Incident Response sebelum dianalisis AI.**
 
+## Prinsip utama
+
+```text
+ORIGINAL
+   ↓
+Analisisin
+   ↓
+SANITIZED
+   ↓
+AI Analysis
+   ↓
+RESTORE
+   ↓
+FINAL REPORT
+```
+
+**AI hanya melihat SANITIZED. S-BOX hanya berada di sisi lokal.**
+
+
 ## 1. Siapkan
 
 Install:
 
 * Python 3.11+
-* Analisisin
 * OpenCode
+* Analisisin
+   Clone repository:
+   
+   git clone https://github.com/numburanggata/Analisisin.git
+   cd Analisisin
+   
+   Jika belum punya Git, download repository sebagai ZIP dari GitHub, kemudian extract.
 
 Struktur kasus:
 
@@ -23,19 +48,16 @@ Masukkan seluruh log/evidence ke `ORIGINAL/`.
 ## 2. Sanitasi
 
 ```bash
-analisisin sanitize ORIGINAL SANITIZED
+python analisisin.py sanitize ORIGINAL SANITIZED
 ```
 
-Analisisin akan mengganti identifier sensitif secara konsisten:
+Analisisin akan mengganti identifier sensitif terutama (*.go.id) secara konsisten: 
 
 ```text
-cahaya.kal.go.id → DOMAIN_001
+cahaya.kal.go.id → DOMAIN_001 
 192.168.10.1     → PRIVATE_IP_001
 admin            → USER_001
 ```
-
-Credential/token/API key **di-redact**, bukan disimpan untuk restore.
-
 **S-BOX dan ORIGINAL tidak boleh diberikan ke AI.**
 
 ## 3. Jalankan OpenCode
@@ -51,7 +73,6 @@ Gunakan:
 
 * **OpenCode Zen → model Free**
 * **Build mode**
-* `AGENTS.md` di root `SANITIZED/`
 
 Jangan menjalankan OpenCode dari folder yang juga berisi `ORIGINAL` atau S-BOX.
 
@@ -60,7 +81,7 @@ Jangan menjalankan OpenCode dari folder yang juga berisi `ORIGINAL` atau S-BOX.
 ```text
 Analisis seluruh artefak di workspace ini.
 
-Kasus: defacement dan diduga ransomware.
+Kasus: defacement dan diduga ransomware.  #atau insiden lain
 
 Identifikasi:
 1. rentang waktu dan inventaris artefak;
@@ -89,23 +110,6 @@ Jangan mengubah evidence.
 Setelah analisis selesai:
 
 ```bash
-analisisin restore analysis.txt FINAL_REPORT.txt
+python analisisin.py restore analysis.txt FINAL_REPORT.txt
 ```
 
-## Prinsip utama
-
-```text
-ORIGINAL
-   ↓
-Analisisin
-   ↓
-SANITIZED
-   ↓
-AI Analysis
-   ↓
-RESTORE
-   ↓
-FINAL REPORT
-```
-
-**AI hanya melihat SANITIZED. S-BOX hanya berada di sisi lokal.**
