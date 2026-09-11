@@ -1,0 +1,3 @@
+243.123.2.31 - - [11/Aug/2026:03:08:57 +0000] ＂GET /kecamatan/bansos HTTP/1.1＂ 200 6251 ＂https://obilatukab.go.id/kecamatan/penyaluran?desa_id=144&amp;step=23＂ ＂Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36＂
+243.123.2.31 - - [11/Aug/2026:03:09:11 +0000] ＂GET / HTTP/1.1＂ 302 3918 ＂-＂ ＂Coba-HealthCheck/1.0 (+https://obilatukab.go.id/status-layanan)＂
+221.3.95.44 - - [11/Aug/2026:03:09:12 +0000] ＂GET /login HTTP/1.1＂ 200 5874 ＂https://12.223.112.241＂ ＂CobaPortal-HealthCheck/1.0 (+https://obilatukab.go.id/status-layanan)＂
